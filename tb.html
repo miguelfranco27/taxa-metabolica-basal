@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>taxa metabolica</title>
+    <link rel="stylesheet" href="tb.css">
+</head>
+
+<header class="teto">
+
+
+
+</header>
+
+<body class="corpo">
+
+    <main class="tudo">
+
+
+
+
+
+
+
+        <section class="conteudo-principal">
+
+
+            <div class="dentro">
+
+
+                <h1>Calcular TMB</h1>
+
+
+
+
+
+
+                <br>
+
+                <input type="number" class="menup" id="peso" placeholder=" Peso (Kg)"> <br>
+
+                <div id="erro" class="er"></div>    
+
+
+                <input type="number" class="menua" id="altura" placeholder=" Altura (cm)"> <br>
+
+                
+
+               
+
+                <input type="number" class="menui" id="idade" placeholder=" Idade (anos)"> <br>
+
+
+
+
+                <label class="labelatv" for="altura"> Nivel de atividade</label>
+
+
+                <select name="options" class="menu1" id="options">
+
+                    <option value="" selected> Escolha </option>
+                    <option value="1.2"> Pouco Ativo (Pouco ou nenhum exercicio)   </option>
+                    <option value="1.55"> Moderadamente Ativo (exercicio leve 1 a 3 dias por semana) </option>
+                    <option value="1.84"> muito Ativo (pratica exercicio  3 a 5 dias dias por semana)</option>
+                    <option value="2.2">Extremamente Ativo ( exercicio intenso 5 a 6 dias por semana )</option>
+
+
+
+                </select>
+
+                <label class="genero" for=""> Genero </label> <br>
+                <div class="gen">
+
+
+
+                    <input class="botao-sexo" type="radio" name="sexo" id="Homem">
+                    <label class="sextitulo" for="Homem">Homem </label>
+
+
+
+
+                    <input class="botao-sexo" type="radio" name="sexo" id="Mulher">
+                    <label class="sextitulo" for="Mulher">Mulher</label>
+
+
+                </div>
+                <br>
+
+
+                <button class="botao" value="calcular" onclick="calcular()">Calcular</button>
+
+
+
+
+
+
+
+        </section>
+
+        <div class="fundoresu">
+
+
+
+            <div class="texto">
+
+
+                <h1 class="titulo-texto"> Taxa metabólica basal</h1>
+                <p class="p2">É o total de calorias gastas para manter as funções vitais, como os batimentos cardíacos,
+                    a pressão
+                    arterial e a temperatura corporal.</p>
+
+
+
+
+                <div id="res" class="resu"></div>
+
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+<script>
+    function calcular() {
+
+        let p = document.getElementById('peso')
+        let i = document.getElementById('idade')
+        let a = document.getElementById('altura')
+
+
+        let select = document.querySelector('select#options')
+        let genero = document.getElementsByName('sexo')
+
+
+
+
+        if (p.value.length == 0 && a.value.length == 0 && i.value.length == 0) {
+            erro.innerHTML = ` preenchimento obrigatório`
+            erro.style.color = " red"
+
+      
+           
+        }
+    
+        
+        else
+            if (p.value.length <= 400 && a.value.length <= 300 && i.value.length <= 200 && genero[0].checked) {
+                erro.innerHTML = ""
+                let TMB = 66 + (13.7 * p.value) + (5.0 * a.value) - (6.8 * i.value)
+                let gasto = TMB.toFixed() * select.value;
+                res.innerHTML = `<h1 class = "i"> Resultado </h1> <p> O seu gasto calórico total é de aproximadamente <strong>${gasto.toFixed()} Kcal  </strong> . Já sua taxa metabólica basal é de <strong> ${TMB.toFixed()} Kcal.</strong> </p>
+                <hr>
+                 
+                 <p> Se deseja emagrecer é preciso seguir uma dieta com menos de <strong>${gasto.toFixed()} calorias </strong> por dia. </p>
+                 <p class = 'p1'> Ja para se ganhar massa muscular é preciso seguir uma dieta com mais de <strong>${gasto.toFixed()} calorias </strong> por dia, Alem dos Treinos.</p>`
+                 res.style.background = 'white'
+
+            }
+
+           if(genero[1].checked){
+            erro.innerHTML = ""
+            let TMB =  66+ ( 13.7* p.value)+(5.0 * a.value)- (6.8 * i.value)
+             let gasto =  TMB.toFixed() * select.value;
+             res.innerHTML = `<h1 class = "i"> O seu tmb </h1> <p> O seu gasto calórico total é de aproximadamente <strong>${gasto.toFixed()} Kcal  </strong> . Já sua taxa metabólica basal é de <strong> ${TMB.toFixed()} Kcal.</strong> </p>
+                <hr>
+                 
+                 <p> Se deseja emagrecer é preciso seguir uma dieta com menos de <strong>${gasto.toFixed()} calorias </strong> por dia. </p>
+                 <p class = 'p1'> Ja para se ganhar massa muscular é preciso seguir uma dieta com mais de <strong>${gasto.toFixed()} calorias </strong> por dia, Alem dos Treinos.</p>`
+                 res.style.background = 'white'
+
+           }
+           
+           
+    }
+</script>
+
+</html>
